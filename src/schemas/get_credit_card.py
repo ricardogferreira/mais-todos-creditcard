@@ -11,3 +11,4 @@ class GetCreditCardSchema(BaseModel):
     holder: str
     number: str
     cvv: Optional[str]
+    brand: str

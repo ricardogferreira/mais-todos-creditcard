@@ -7,6 +7,7 @@ from sqlmodel import Field, SQLModel
 from src.models import Session
 from src.services.cryptography import decrypt
 
+
 class CreditCard(SQLModel, table=True):
     __tablename__ = "credit_card"
     id: Optional[UUID] = Field(
@@ -19,6 +20,7 @@ class CreditCard(SQLModel, table=True):
     holder: str
     number: str
     cvv: Optional[str]
+    brand: str
 
     @classmethod
     def get(cls, session: Session, id: UUID):
