@@ -17,9 +17,9 @@ class CreditCard(SQLModel, table=True):
         nullable=False,
     )
     exp_date: date
-    holder: str
+    holder: str = Field(min_length=3)
     number: str
-    cvv: Optional[str]
+    cvv: Optional[str] = Field(min_length=3, max_length=4)
     brand: str
 
     @classmethod
