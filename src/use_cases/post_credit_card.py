@@ -7,11 +7,9 @@ class PostCreditCard:
         self._session = session
 
     def create(self, credit_card):
-        credit_card_model = CreditCard(
-            **credit_card.dict()
-        )
+        credit_card_model = CreditCard(**credit_card.dict())
 
         self._session.add(credit_card_model)
         self._session.commit()
-        
+
         return credit_card_model
