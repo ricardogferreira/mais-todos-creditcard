@@ -8,7 +8,7 @@ COPY pyproject.toml /reqs
 COPY poetry.lock /reqs
 RUN pip install poetry && \
 poetry config virtualenvs.create false && \
-poetry install --no-root --no-interaction
+poetry install --no-root --no-interaction --with dev
 
 FROM python:3.10-alpine
 
@@ -19,6 +19,7 @@ apk add make libc6-compat libpq-dev gcc openssh git postgresql-dev musl-dev zlib
 # COPY dependencies
 COPY --from=dependency /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages/
 COPY --from=dependency /usr/local/bin/uvicorn /usr/local/bin/uvicorn
+COPY --from=dependency /usr/local/bin/pytest /usr/local/bin/pytest
 
 # Add our code
 WORKDIR /app/
