@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "mais-todos-creditcard"
+version = "0.1.0"
+description = ""
+authors = ["Ricardo Goncalves <rgf.ricardo@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.104.1"
+uvicorn = {extras = ["standard"], version = "^0.24.0"}
+python-creditcard = {git = "https://github.com/maistodos/python-creditcard.git", rev = "main"}
+sqlmodel = "^0.0.8"
+psycopg2 = "^2.9.6"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.13.2"
+pytest = "^7.3.1"
+pytest-mock = "^3.10.0"
+black = "^23.3.0"
+pylint = "^2.17.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+include = '\.pyi?$'
+exclude='''
+/(
+\.git
+| \.hg
+| mypy_cache
+| \.tox
+| \.venv
+| _build
+| buck-out
+)/
+'''
+
+[too.isort]
+multi_line_output = 3
+
