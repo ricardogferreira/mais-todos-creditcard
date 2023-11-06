@@ -64,3 +64,11 @@ Para configurar uma chave abra o python e utilize esse comando:
 >>> key = Fernet.generate_key()
 ```
 Com a chave gerada configure a variável de ambiente `CRYPTOGRAPHY_KEY` com o valor da chave.
+
+### Autenticação e autorização
+
+A lógica de autorização não foi adicionado na aplicação, foi considerado que existirá outra aplicação para fazer a autenticação e autorização dentro do cluster.
+Para testar a api só é preciso informar o header `Authorization`:
+```json
+{"Authorization": "token test"}
+```
