@@ -18,7 +18,7 @@ poetry remove <nome do pacote>
 ### Comandos Makefile (Em desenvolvimento, não utilizar)
 ```bash
 # Executar testes
-make tests
+make run-tests
 
 # Criar uma nova migração
 make create-migration description="<Descrição da migração>"
@@ -33,7 +33,7 @@ make rollback-migration
 ### Comandos via docker-compose
 ```bash
 # Executar testes
-docker compose exec api make tests
+docker compose exec api make run-tests
 
 # Criar uma nova migração
 docker compose exec api make create-migration description="<Descrição da migração>"
