@@ -1,13 +1,12 @@
-SHELL=/bin/sh
 MIGRATIONS_PATH=migrations/
 DBMATE_COMMAND=./bin/dbmate --migrations-dir ${MIGRATIONS_PATH}
 DBMATE_WAIT=./bin/dbmate wait
 only=tests
 
-tests:
-	docker exec api coverage run -m pytest $(only) --disable-warnings
+run-tests:
+	@docker compose exec api coverage run -m pytest $(only) --disable-warnings
 ifdef report
-	docker exec api coverage report
+	@docker compose exec api coverage report
 endif
 
 migrate:
@@ -22,7 +21,7 @@ rollback-migration:
 	@${DBMATE_COMMAND} down	
 
 docker-rollback-migration:
-	docker compose exec api make rollback-migration
+	@docker compose exec api make rollback-migration
 
 create-migration: check-description
 	@${DBMATE_COMMAND} new $(shell echo "${description}" | sed -E 's/\s+/_/g')
