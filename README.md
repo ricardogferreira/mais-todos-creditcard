@@ -52,3 +52,15 @@ docker compose build
 ```bash
 docker compose up
 ```
+
+### Criptografia
+Vejo que a melhor forma de criptografar seria no client, utilizando chave publica e privada.
+Mas para teste e considerando que só estou desenvolvendo a api, estou utilizando o modulo `Fernet` para fazer uma criptografia simples,
+ somente para teste.
+
+Para configurar uma chave abra o python e utilize esse comando:
+```python
+>>> from cryptography.fernet import Fernet
+>>> key = Fernet.generate_key()
+```
+Com a chave gerada configure a variável de ambiente `CRYPTOGRAPHY_KEY` com o valor da chave.
