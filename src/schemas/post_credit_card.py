@@ -5,6 +5,8 @@ from uuid import UUID
 from pydantic import BaseModel, Field, root_validator
 from creditcard import CreditCard
 
+from src.services.cryptography import encrypt
+
 
 class PostCreditCardSchema(BaseModel):
     exp_date: date
@@ -18,6 +20,7 @@ class PostCreditCardSchema(BaseModel):
         credit_card = CreditCard(number)
         if not credit_card.is_valid():
             raise ValueError("Invalid credit card number")
+        values["number"] = encrypt(number)
         return values
 
 class PostCreditCardResponse(BaseModel):
