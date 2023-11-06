@@ -87,3 +87,27 @@ Para testar a api só é preciso informar o header `Authorization`:
 ```json
 {"Authorization": "token test"}
 ```
+
+### Variáveis de ambiente
+```shell
+POSTGRES_PASSWORD=test123
+POSTGRES_USER=mais_todos_creditcard
+POSTGRES_DB=mais_todos_creditcard
+POSTGRES_URL=db
+POSTGRES_PORT=5432
+POSTGRES_CONNECTION_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_URL}:${POSTGRES_PORT}/${POSTGRES_DB}"
+DATABASE_URL="${POSTGRES_CONNECTION_URL}?sslmode=disable"
+CRYPTOGRAPHY_KEY=Us_TeDQyQrkiSbcz8kkavCOYRhJhKa0UEFn0ce0P6kc=
+```
+
+### Etapas para subir a aplicação
+Configurar variaveis de ambiente;
+
+Executar os seguintes comandos:
+```shell
+docker compose build
+docker compose up
+docker compose exec api make migrate
+```
+
+Acessar local `http://127.0.0.1:5000`, swagger `http://127.0.0.1:5000/docs`
