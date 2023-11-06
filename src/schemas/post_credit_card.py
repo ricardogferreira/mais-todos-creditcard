@@ -17,7 +17,7 @@ class PostCreditCardSchema(BaseModel):
 
     @root_validator()
     def validate_number_and_set_brand(cls, values):
-        number = values["number"]
+        number = values.get("number")
         credit_card = CreditCard(number)
         if not credit_card.is_valid():
             raise ValueError("Invalid credit card number")
