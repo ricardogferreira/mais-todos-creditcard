@@ -15,7 +15,7 @@ poetry add -G dev <nome do pacote>
 poetry remove <nome do pacote>
 ```
 
-### Comandos Makefile
+### Comandos Makefile (Em desenvolvimento, não utilizar)
 ```bash
 # Executar testes
 make tests
@@ -28,6 +28,21 @@ make migrate
 
 # Realizar rollback da ultima migração aplicada
 make rollback-migration
+```
+
+### Comandos via docker-compose
+```bash
+# Executar testes
+docker compose exec api make tests
+
+# Criar uma nova migração
+docker compose exec api make create-migration description="<Descrição da migração>"
+
+# Aplicar migração
+docker compose exec api make migrate
+
+# Realizar rollback da ultima migração aplicada
+docker compose exec api make rollback-migration
 ```
 
 ### Migrações

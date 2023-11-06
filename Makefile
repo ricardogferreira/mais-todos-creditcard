@@ -4,10 +4,7 @@ DBMATE_WAIT=./bin/dbmate wait
 only=tests
 
 run-tests:
-	@docker compose exec api coverage run -m pytest $(only) --disable-warnings
-ifdef report
-	@docker compose exec api coverage report
-endif
+	@python3 -m pytest $(only) --disable-warnings
 
 migrate:
 	@${DBMATE_WAIT}
