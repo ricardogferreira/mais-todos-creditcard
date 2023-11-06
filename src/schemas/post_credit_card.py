@@ -12,7 +12,7 @@ class PostCreditCardSchema(BaseModel):
     exp_date: date
     holder: str
     number: str = Field(regex="\d+", max_length=20)
-    cvv: Optional[str]
+    cvv: Optional[str] = Field(regex="\d+", min_length=3, max_length=4)
 
     @root_validator()
     def validate_number(cls, values):
