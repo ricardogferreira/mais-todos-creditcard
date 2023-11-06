@@ -2,15 +2,15 @@ from fastapi import APIRouter, Depends
 from typing import List
 from uuid import UUID
 
-from src.models import get_session, Session
-
-router = APIRouter(prefix="/api/v1/credit-card")
-
 from src.schemas.post_credit_card import PostCreditCardResponse, PostCreditCardSchema
 from src.schemas.get_credit_card import GetCreditCardSchema
+from src.models import get_session, Session
 from src.use_cases.post_credit_card import PostCreditCard
 from src.use_cases.get_credit_card import GetCreditCard
 from src.use_cases.get_credit_cards import GetCreditCards
+from src.utils.security import authorizer
+
+router = APIRouter(prefix="/api/v1/credit-card", dependencies=[Depends(authorizer)])
 
 
 @router.get("", response_model=List[GetCreditCardSchema])
