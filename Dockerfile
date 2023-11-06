@@ -1,0 +1,33 @@
+FROM python:3.10-alpine as dependency
+
+RUN apk upgrade && \
+apk add make libc6-compat libpq-dev gcc openssh git postgresql-dev musl-dev zlib-dev bash
+
+WORKDIR /reqs
+COPY pyproject.toml /reqs
+COPY poetry.lock /reqs
+RUN pip install poetry && \
+poetry config virtualenvs.create false && \
+poetry install --no-root --no-interaction
+
+FROM python:3.10-alpine
+
+# Install dependencies
+RUN apk upgrade && \
+apk add make libc6-compat libpq-dev gcc openssh git postgresql-dev musl-dev zlib-dev bash
+
+# COPY dependencies
+COPY --from=dependency /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages/
+COPY --from=dependency /usr/local/bin/uvicorn /usr/local/bin/uvicorn
+
+# Add our code
+WORKDIR /app/
+COPY . .
+
+# Run the image as a non-root user
+RUN adduser -D app
+USER app
+
+EXPOSE 5000
+
+ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
