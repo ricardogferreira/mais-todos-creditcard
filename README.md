@@ -1,6 +1,6 @@
 # mais-todos-creditcard
 
-Api responsável pelo gerenciamento dos cartões de credito.
+Api responsável pelo gerenciamento dos cartões de crédito.
 
 ### Uso do poetry
 
@@ -42,3 +42,13 @@ Os testes estão na pasta `tests`.
 
 ### Swagger
 Para acessar o swagger basta inserir o endpoint `/docs`.
+
+### Como fazer o build do projeto?
+```bash
+docker compose build
+```
+
+### Como iniciar o projeto?
+```bash
+docker compose up
+```
