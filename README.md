@@ -102,7 +102,7 @@ CRYPTOGRAPHY_KEY=Us_TeDQyQrkiSbcz8kkavCOYRhJhKa0UEFn0ce0P6kc=
 ```
 
 ### Etapas para subir a aplicação
-Configurar variaveis de ambiente;
+Criar um arquivo `.envfile` e Configurar variaveis de ambiente;
 
 Executar os seguintes comandos:
 ```shell
