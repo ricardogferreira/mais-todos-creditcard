@@ -1,5 +1,6 @@
 import pytest
 from src.schemas.post_credit_card import PostCreditCardSchema
+from src.services.cryptography import decrypt
 
 
 @pytest.mark.parametrize(
@@ -16,3 +17,12 @@ def test_validate_number_and_set_brand_raises_value_error():
     values = {"number": "123231312"}
     with pytest.raises(ValueError, match="Invalid credit card number"):
         PostCreditCardSchema.validate_number_and_set_brand(values)
+
+
+def test_validate_number_and_set_brand_with_valid_credit_card():
+    values = {"number": "4917480000000008"}
+
+    result = PostCreditCardSchema.validate_number_and_set_brand(values)
+
+    assert result["brand"] == "visa"
+    assert decrypt(result["number"]) == "4917480000000008"
