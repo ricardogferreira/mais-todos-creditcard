@@ -119,7 +119,7 @@ Acessar local `http://127.0.0.1:5000`, swagger `http://127.0.0.1:5000/docs`
 
 ### Testes
 Teste integrado com o banco de dados:
-* Teste integrados `tests/routes/test_api_v1_credit_card_viewer.py``
+* Teste integrados `tests/routes/test_api_v1_credit_card_viewer.py`
 
 Os outros são testes unitários.
 
