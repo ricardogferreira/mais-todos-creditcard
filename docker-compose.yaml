@@ -27,9 +27,32 @@ services:
     image: postgres:13-alpine
     ports:
       - "5432:5432"
-    volumes:
-      - ./.data:/var/lib/postgresql/data
     env_file:
       - .envfile
     networks:
         - default-network
+
+  db-test:
+    container_name: db-test
+    image: postgres:13-alpine
+    ports:
+      - "54322:5432"
+    env_file:
+      - .envfile.test
+    networks:
+        - default-network
+
+  api-test:
+    build:
+      dockerfile: Dockerfile_dev
+      context: .
+    env_file:
+      - .envfile.test
+    volumes:
+      - .:/app/
+    networks:
+      - default-network
+    depends_on:
+      - db-test
+    links:
+      - db-test
