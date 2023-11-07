@@ -53,7 +53,7 @@ Foi utilizado o dbmate para poder escrever código sql puro e não ficar limitad
 
 
 ### Testes
-Estamos utilizando o `pytest` para os testes unitários e `vcrpy` para gerar os cassettes dos testes integrados.
+Estamos utilizando o `pytest` para o desenvolvimento dos testes.
 Os testes estão na pasta `tests`.
 
 ### Swagger
