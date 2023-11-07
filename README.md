@@ -103,6 +103,10 @@ CRYPTOGRAPHY_KEY=Us_TeDQyQrkiSbcz8kkavCOYRhJhKa0UEFn0ce0P6kc=
 
 ### Etapas para subir a aplicação
 Criar um arquivo `.envfile` e Configurar variaveis de ambiente;
+Para facilitar a configuração da variável de ambiente é possível fazer uma cópia do arquivo de exemplo e preencher com os credenciais da seguinte forma:
+```shell
+cp .envfile.example .envfile
+```
 
 Executar os seguintes comandos:
 ```shell
