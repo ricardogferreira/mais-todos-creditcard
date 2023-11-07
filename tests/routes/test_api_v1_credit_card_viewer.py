@@ -1,11 +1,9 @@
-from datetime import date
-
 from src.models.credit_card import CreditCard
 
 HEADERS = {"Authorization": "test123"}
 
 
-def test_post_api_v1_credit_card_required_fields(client):
+def test_post_api_v1_credit_card_required_fields(client, session):
     response = client.post(
         url="/api/v1/credit-card",
         json={},
@@ -27,11 +25,7 @@ def test_post_api_v1_credit_card_required_fields(client):
     ]
 
 
-def test_post_api_v1_credit_card_success(mocker, client):
-    mocker.patch(
-        "src.use_cases.post_credit_card.CreditCard",
-        return_value=CreditCard(id="58b352f2-2ac5-476d-8e14-027f6d247a08"),
-    )
+def test_post_api_v1_credit_card_success(client, session):
     response = client.post(
         url="/api/v1/credit-card",
         json={
@@ -45,4 +39,5 @@ def test_post_api_v1_credit_card_success(mocker, client):
 
     response_data = response.json()
     assert response.status_code == 201
-    assert response_data == {"id": "58b352f2-2ac5-476d-8e14-027f6d247a08"}
+    credit_card = session.query(CreditCard).get(response_data["id"])
+    assert response_data["id"] == str(credit_card.id)

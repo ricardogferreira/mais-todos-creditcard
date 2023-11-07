@@ -1,18 +1,10 @@
-from unittest.mock import MagicMock
+import os
 
 import pytest
 from fastapi.testclient import TestClient
 
 from src.main import app
 from src.models import get_session
-
-
-def override_get_db():
-    try:
-        db = MagicMock()
-        yield db
-    finally:
-        db.close()
 
 
 @pytest.fixture
@@ -22,6 +14,14 @@ def app_client():
 
 @pytest.fixture
 def client(app_client):
-    app_client.dependency_overrides[get_session] = override_get_db
     with TestClient(app_client) as client:
         yield client
+
+
+@pytest.fixture()
+def session():
+    os.system('make migrate')
+
+    yield next(get_session())
+
+    os.system('./bin/dbmate drop')
