@@ -49,6 +49,7 @@ docker compose exec api make rollback-migration
 
 Para gerenciar as migrações de banco de dados estamos utilizando o `dbmate`,
 todas as migrações ficam disponíveis em `migrations`, para gerencia-las existe os comandos no `Makefile`.
+Foi utilizado o dbmate para poder escrever código sql puro e não ficar limitado a comandos do alembic ou algo parecido.
 
 
 ### Testes
@@ -117,6 +118,11 @@ Teste integrado com o banco de dados:
 * Teste integrados `tests/routes/test_api_v1_credit_card_viewer.py``
 
 Os outros são testes unitários.
+
+Antes de executar os testes deve subir o docker:
+```bash
+docker compose up
+```
 
 Comando para executar os testes:
 ```bash
