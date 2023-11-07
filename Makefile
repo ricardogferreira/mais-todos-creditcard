@@ -4,7 +4,7 @@ DBMATE_WAIT=./bin/dbmate wait
 only=tests
 
 run-tests:
-	@python3 -m pytest $(only) --disable-warnings
+	pytest $(only) --disable-warnings
 
 migrate:
 	@${DBMATE_WAIT}
